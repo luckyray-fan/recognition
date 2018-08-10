@@ -32,5 +32,6 @@
         <jarDirectory url="file://$MODULE_DIR$/web/WEB-INF/lib" recursive="false" />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="aip-java-sdk-4.3.2" level="project" />
   </component>
 </module>
