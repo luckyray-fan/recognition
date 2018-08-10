@@ -8,6 +8,9 @@
           <element id="module-output" name="recognition" />
         </element>
       </element>
+      <element id="directory" name="out">
+        <element id="module-output" name="recognition" />
+      </element>
     </root>
   </artifact>
 </component>
