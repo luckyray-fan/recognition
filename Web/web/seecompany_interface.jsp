@@ -14,7 +14,10 @@
 <body>
 <% for(int i = 0;i<list1.length;i++) {%>
 成员id:<%=list1[i]%>
+&nbsp &nbsp &nbsp
 成员姓名:<%=list2[i]%>
+&nbsp &nbsp &nbsp
+<input type="submit" value="+">
 <br><br>
 <% }
 %>
