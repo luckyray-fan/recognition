@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>识别页面</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        .video {
+            margin: 0 auto;
+            width: 200px;
+            -webkit-box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, .1);
+            -moz-box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, .1);
+            box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, .1);
+        }
+        .canvas{
+            width: 200px;
+            height: 150px;
+            margin: 0 auto;
+            
+        }
+
+        .shoot {
+            width: 60px;
+            height: 35px;
+            margin: 20px auto;
+            font-size: 18px;
+            color: #fff;
+            text-align: center;
+            line-height: 35px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            cursor: pointer;
+            background: #4586f3;
+        }
+    </style>
+</head>
+<body>
+<div class="video">
+    <video src="" id="video" autoplay width="200" height="150"></video>
+</div>
+<div class="shoot">click</div>
+<div class="canvas">
+    <canvas id="canvas"></canvas>
+</div>
+<script>
+    var video = document.getElementById("video");
+    var $canvas = document.getElementById("canvas");
+    var $shoot = $(".shoot");
+    var context = $canvas.getContext("2d");
+    var x;
+    function getUserMedia(con, success, err) {
+        if (navigator.mediaDevices.getUserMedia)
+            navigator.mediaDevices.getUserMedia(con).then(success).catch(err);
+    }
+
+    function success(stream) {
+        var com = window.URL || window.webKitURL;
+        video.src = com.createObjectURL(stream);
+        video.play();
+    }
+
+    function error(error) {
+        console.log("失败", error.name, error.message);
+    }
+
+    var constraints = {
+        video: {
+            facingMode: "user"
+        }
+    };
+    getUserMedia(constraints, success, error);
+    $shoot[0].addEventListener("click", function (ev) {
+        context.drawImage(video, 0, 0,200,150);
+        x = $canvas.toDataURL("image/png");
+        x = dataURLtoFile(x,"test");
+        uploadfile(x);
+    });
+    function dataURLtoFile(dataurl, filename) {
+        var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+        while(n--){
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new File([u8arr], filename, {type:mime});
+    }
+    function uploadfile(cur) {
+        var formdata = new FormData();
+        formdata.append('file',cur);
+        $.ajax({
+            url:"file.php",
+            type:"POST",
+            data:formdata,
+            processData:false,
+            contentType:false,
+            dataType:"JSON",
+            success:function (e) {
+                if(e.success)
+                {
+                    alert('头像上传成功');
+                }
+            }
+        })
+    }
+</script>
+</body>
+</html>
