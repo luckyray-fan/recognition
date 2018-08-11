@@ -12,11 +12,17 @@
 <head>
     <title>创建公司会议</title>
 <body>
+输出会议名称：
+<input type="text" name="meeting" >
+<br><br>
+<br><br>
+选择会议成员
+<br><br>
 <% for(int i = 0;i<list1.length;i++) {%>
 <form action="Main_interface.html" method="post">
-    <input type="text" name="account" value="<%=list1[i] %>">
+    <input type="text" name="wordid" value="<%=list1[i] %>">
     &nbsp &nbsp &nbsp
-    <input type="text" name="pwd" value="<%=list2[i] %>">
+    <input type="text" name="name" value="<%=list2[i] %>">
     &nbsp &nbsp &nbsp
     <input type="submit" value="+">
 </form>
