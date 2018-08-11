@@ -37,8 +37,6 @@ public class login extends HttpServlet {
         PrintWriter out = response.getWriter();
         String account = request.getParameter("account");
         String pwd = request.getParameter("pwd");
-        String message = null;
-        request.getSession().setAttribute("message",message);
         try {
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/user?useUnicode=true&characterEncoding=utf8&useSSL=true", "root", "7758521");
             Statement stmt = conn.createStatement(); // 获取Statement
