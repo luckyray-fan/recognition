@@ -13,11 +13,13 @@
     <title>创建公司会议</title>
 <body>
 <% for(int i = 0;i<list1.length;i++) {%>
-成员id:<%=list1[i]%>
-&nbsp &nbsp &nbsp
-成员姓名:<%=list2[i]%>
-&nbsp &nbsp &nbsp
-<input type="submit" value="+">
+<form action="Main_interface.html" method="post">
+    <input type="text" name="account" value="<%=list1[i] %>">
+    &nbsp &nbsp &nbsp
+    <input type="text" name="pwd" value="<%=list2[i] %>">
+    &nbsp &nbsp &nbsp
+    <input type="submit" value="+">
+</form>
 <br><br>
 <% }
 %>
