@@ -32,12 +32,12 @@
     </servlet-mapping>
     <!--//打开创建会议用的servelet-->
     <servlet>
-        <servlet-name>company</servlet-name>
-        <servlet-class>BaseFunction.company</servlet-class>
+        <servlet-name>openmeeting</servlet-name>
+        <servlet-class>BaseFunction.openmeeting</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>company</servlet-name>
-        <url-pattern>/company</url-pattern>
+        <servlet-name>openmeeting</servlet-name>
+        <url-pattern>/openmeeting</url-pattern>
     </servlet-mapping>
     <!--//开放会议用的servelet-->
     <servlet>
