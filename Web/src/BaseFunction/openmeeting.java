@@ -43,7 +43,6 @@ public class openmeeting extends HttpServlet{
                 rs.next();
                 companylist companylist=new companylist(rs.getString(4),rs.getString(5));
                 session.setAttribute("companylist",companylist);
-                JOptionPane.showMessageDialog(null,"已经成功添加该用户");
                 response.sendRedirect("seecompany_interface.jsp");
                 con.close();}
         } catch (ClassNotFoundException e) {
