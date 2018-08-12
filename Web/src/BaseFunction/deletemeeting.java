@@ -28,6 +28,7 @@ public class deletemeeting extends HttpServlet {
             String sql="delete from meeting where company="+company+" and  holder="+holder+" ";
             st.executeUpdate(sql);
             con.close();
+            response.sendRedirect("function_interface.jsp");
         } catch (ClassNotFoundException e) {
             System.out.println("数据库驱动没有安装");
         } catch (SQLException e) {
