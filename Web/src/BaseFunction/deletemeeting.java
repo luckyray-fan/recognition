@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class deletemeeting extends HttpServlet {
-
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session=request.getSession();
         user user =(user)session.getAttribute("user");
