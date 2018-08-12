@@ -27,6 +27,23 @@ public class company extends HttpServlet{
             if(user.companyname==null)
                 response.sendRedirect("entercompany_interface.jsp");
             else{
+                //生成会议
+                String company="'"+user.companyname+"'";
+                System.out.println(company);
+                String holder="'"+user.name+"'";
+                System.out.println(123);
+                String idlist="'"+user.workid+"'";
+                System.out.println(idlist);
+                String memberlist="'"+user.name+"'";
+                System.out.println(memberlist);
+                String sta1="主持人";
+                String sta2="'"+sta1+"'";
+                String sql1="insert into meeting(company,holder,idlist,memberlist,memberstatus)values("+company+","+holder+","+idlist+","+memberlist+","+sta2+")";
+                Statement st=con.createStatement();
+                st.executeUpdate(sql1);
+
+                //呈现公司所有成员
+                System.out.println(123);
                 String sql = "Select * from company where name='" + user.companyname+ "'";
                 ResultSet rs = stmt.executeQuery(sql);
                 rs.next();
