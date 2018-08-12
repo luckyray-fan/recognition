@@ -23,7 +23,6 @@ public class openmeeting extends HttpServlet{
         String holder="'"+user.name+"'";
         String idlist="'"+user.workid+"'";
         String memberlist="'"+user.name+"'";
-        System.out.println(memberlist);
         String sta1="主持人";
         String sta2="'"+sta1+"'";
         Connection con;
@@ -37,9 +36,7 @@ public class openmeeting extends HttpServlet{
                 //生成会议
                 String sql1="insert into meeting(company,holder,idlist,memberlist,memberstatus)values("+company+","+holder+","+idlist+","+memberlist+","+sta2+")";
                 stmt.executeUpdate(sql1);
-
                 //呈现公司所有成员
-                System.out.println(123);
                 String sql = "Select * from company where name='" + user.companyname+ "'";
                 ResultSet rs = stmt.executeQuery(sql);
                 rs.next();
