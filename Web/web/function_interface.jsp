@@ -34,9 +34,9 @@
 <br><br>
 公司员工编号：<%=user.workid %>
 <br><br>
-<a href=company target="_blank">
+<form action="openmeeting" method="post">
     <input type="submit" value="创办公司会议">
-</a>
+    <form>
 <br><br>
 <a href=register_interface.html target="_blank">
     <input type="submit" value="进入公司会议">
