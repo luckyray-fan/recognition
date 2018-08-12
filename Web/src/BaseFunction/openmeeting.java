@@ -16,6 +16,7 @@ import java.sql.Statement;
 public class openmeeting extends HttpServlet{
 
     public void service(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
+
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         HttpSession session=request.getSession();
