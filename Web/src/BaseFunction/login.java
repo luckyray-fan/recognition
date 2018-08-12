@@ -50,7 +50,7 @@ public class login extends HttpServlet {
                 response.sendRedirect("function_interface.jsp");
             }
             else{
-                out.print("用户名不存在或者密码错误");
+                response.sendRedirect("Main_interface.jsp");
             }
         } catch (SQLException e) {
             e.printStackTrace();
