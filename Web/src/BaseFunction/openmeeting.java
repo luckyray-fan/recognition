@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -42,6 +43,7 @@ public class openmeeting extends HttpServlet{
                 rs.next();
                 companylist companylist=new companylist(rs.getString(4),rs.getString(5));
                 session.setAttribute("companylist",companylist);
+                JOptionPane.showMessageDialog(null,"已经成功添加该用户");
                 response.sendRedirect("seecompany_interface.jsp");
                 con.close();}
         } catch (ClassNotFoundException e) {
