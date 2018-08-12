@@ -46,6 +46,7 @@ public class holdmeeting extends HttpServlet {
                 psql =con.prepareStatement("update meeting set memberstatus = ?");
                 psql.setString(1, res.getString(5)+"，"+status);
                 psql.executeUpdate();
+                response.sendRedirect("seecompany_interface.jsp");
             }
             con.close();
         } catch (ClassNotFoundException e) {
