@@ -22,9 +22,9 @@
     &nbsp &nbsp &nbsp
     <input type="submit" value="+">
 </form>
-    <br><br>
-    <br><br>
-    <% }
+<br><br>
+<br><br>
+<% }
 %>
 <br><br>
 <form action="deletemeeting" method="post">
