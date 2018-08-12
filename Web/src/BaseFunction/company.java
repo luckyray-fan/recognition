@@ -32,7 +32,7 @@ public class company extends HttpServlet{
                 rs.next();
                 companylist companylist=new companylist(rs.getString(4),rs.getString(5));
                 session.setAttribute("companylist",companylist);
-                response.sendRedirect("holdmeeting_interface.jsp");
+                response.sendRedirect("seecompany_interface.jsp");
                 con.close();}
         } catch (ClassNotFoundException e) {
             System.out.println("数据库驱动没有安装");

@@ -12,9 +12,16 @@
 <head>
     <title>创建公司会议</title>
 <body>
+选择会议成员
+<br><br>
 <% for(int i = 0;i<list1.length;i++) {%>
-成员id:<%=list1[i]%>
-成员姓名:<%=list2[i]%>
+<form action="holdmeeting" method="post">
+    <input type="text" name="workid" value=<%=list1[i] %>>
+    &nbsp &nbsp &nbsp
+    <input type="text" name="name" value=<%=list2[i] %>>
+    &nbsp &nbsp &nbsp
+    <input type="submit" value="+">
+</form>
 <br><br>
 <% }
 %>

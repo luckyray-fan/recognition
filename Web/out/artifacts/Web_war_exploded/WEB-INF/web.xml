@@ -30,7 +30,7 @@
         <servlet-name>Photocmp</servlet-name>
         <url-pattern>/Photocmp</url-pattern>
     </servlet-mapping>
-    <!--//举行会议用的servelet-->
+    <!--//打开创建会议用的servelet-->
     <servlet>
         <servlet-name>company</servlet-name>
         <servlet-class>BaseFunction.company</servlet-class>
@@ -39,4 +39,14 @@
         <servlet-name>company</servlet-name>
         <url-pattern>/company</url-pattern>
     </servlet-mapping>
+    <!--//开放会议用的servelet-->
+    <servlet>
+        <servlet-name>holdmeeting</servlet-name>
+        <servlet-class>BaseFunction.holdmeeting</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>holdmeeting</servlet-name>
+        <url-pattern>/holdmeeting</url-pattern>
+    </servlet-mapping>
+
 </web-app>

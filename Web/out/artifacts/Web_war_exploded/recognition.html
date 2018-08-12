@@ -88,7 +88,7 @@
         var formdata = new FormData();
         formdata.append('file',cur);
         $.ajax({
-            url:"file.php",
+            url:"/FileUtil",
             type:"POST",
             data:formdata,
             processData:false,

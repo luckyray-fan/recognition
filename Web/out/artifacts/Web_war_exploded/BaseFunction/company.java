@@ -27,13 +27,13 @@ public class company extends HttpServlet{
             if(user.companyname==null)
                 response.sendRedirect("entercompany_interface.jsp");
             else{
-            String sql = "Select * from company where name='" + user.companyname+ "'";
-            ResultSet rs = stmt.executeQuery(sql);
+                String sql = "Select * from company where name='" + user.companyname+ "'";
+                ResultSet rs = stmt.executeQuery(sql);
                 rs.next();
                 companylist companylist=new companylist(rs.getString(4),rs.getString(5));
                 session.setAttribute("companylist",companylist);
                 response.sendRedirect("seecompany_interface.jsp");
-            con.close();}
+                con.close();}
         } catch (ClassNotFoundException e) {
             System.out.println("数据库驱动没有安装");
         } catch (SQLException e) {
