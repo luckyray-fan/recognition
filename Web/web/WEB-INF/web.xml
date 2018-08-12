@@ -48,5 +48,14 @@
         <servlet-name>holdmeeting</servlet-name>
         <url-pattern>/holdmeeting</url-pattern>
     </servlet-mapping>
+    <!--//删除会议用的servelet-->
+    <servlet>
+        <servlet-name>deletemeeting</servlet-name>
+        <servlet-class>BaseFunction.deletemeeting</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deletemeeting</servlet-name>
+        <url-pattern>/deletemeeting</url-pattern>
+    </servlet-mapping>
 
 </web-app>
