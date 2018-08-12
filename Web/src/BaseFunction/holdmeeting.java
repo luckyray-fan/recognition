@@ -54,14 +54,5 @@ public class holdmeeting extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
-
-
-
-
-
-
-
     }
 }
