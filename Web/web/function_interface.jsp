@@ -38,9 +38,9 @@
     <input type="submit" value="创办公司会议">
     <form>
 <br><br>
-<a href=register_interface.html target="_blank">
-    <input type="submit" value="进入公司会议">
-</a>
+<form action="seemeeting" method="post">
+    <input type="submit" value="查看公司会议">
+<form>
 <br><br>
 <a href=register_interface.html target="_blank">
     <input type="submit" value="解散公司会议">
