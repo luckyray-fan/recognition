@@ -48,7 +48,6 @@ public class login extends HttpServlet {
                 HttpSession session=request.getSession();
                 session.setAttribute("user",user);
                 response.sendRedirect("function_interface.jsp");
-
             }
             else{
                 response.sendRedirect("Main_interface.jsp");
