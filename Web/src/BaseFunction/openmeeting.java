@@ -20,11 +20,8 @@ public class openmeeting extends HttpServlet{
         HttpSession session=request.getSession();
         user user =(user)session.getAttribute("user");
         String company="'"+user.companyname+"'";
-        System.out.println(company);
         String holder="'"+user.name+"'";
-        System.out.println(123);
         String idlist="'"+user.workid+"'";
-        System.out.println(idlist);
         String memberlist="'"+user.name+"'";
         System.out.println(memberlist);
         String sta1="主持人";
