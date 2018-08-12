@@ -32,18 +32,7 @@ public class holdmeeting extends HttpServlet {
             if (con.isClosed()) {
                 System.out.println("数据库连接失败");
             }
-            //生成会议
-            String company="'"+user2.companyname+"'";
-            String holder="'"+user2.name+"'";
-            String idlist="'"+user2.workid+"'";
-            String memberlist="'"+user2.name+"'";
-            String sta1="主持人";
-            String sta2="'"+sta1+"'";
-            //创建会议表格
-            String sql1="insert into meeting(company,holder,idlist,memberlist,memberstatus)values("+company+","+holder+","+idlist+","+memberlist+","+sta2+")";
             Statement st=con.createStatement();
-            st.executeUpdate(sql1);
-
             String sql2 ="Select * from meeting where company="+meeting+" and  holder="+hold+" " ;
             ResultSet res = st.executeQuery(sql2);
             if(res.next()) {
