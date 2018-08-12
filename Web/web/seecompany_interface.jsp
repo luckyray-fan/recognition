@@ -21,9 +21,19 @@
     <input type="text" name="name" value=<%=list2[i] %>>
     &nbsp &nbsp &nbsp
     <input type="submit" value="+">
-</form>
-<br><br>
-<% }
+    <br><br>
+    <br><br>
+    <% }
 %>
+</form>
+
+<br><br>
+<form action="deletemeeting" method="post">
+    <input type="submit" value="退出创建会议">
+</form>
+
+
+
+
 </body>
 </html>
