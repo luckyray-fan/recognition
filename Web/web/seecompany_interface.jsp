@@ -26,16 +26,13 @@
     <br><br>
     <% }
 %>
-
 <br><br>
 <form action="deletemeeting" method="post">
     <input type="submit" value="退出创建会议">
 </form>
-&nbsp &nbsp &nbsp
+<br><br>
 <a href="function_interface.jsp">
     <input type="submit" value="完成创建会议">
 </a>
-
-
 </body>
 </html>
