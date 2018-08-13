@@ -59,12 +59,21 @@
     </servlet-mapping>
     <!--//查看会议用的servelet-->
     <servlet>
-        <servlet-name>seeemeeting</servlet-name>
+        <servlet-name>seemeeting</servlet-name>
         <servlet-class>BaseFunction.seemeeting</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>seeemeeting</servlet-name>
-        <url-pattern>/seeemeeting</url-pattern>
+        <servlet-name>seemeeting</servlet-name>
+        <url-pattern>/seemeeting</url-pattern>
+    </servlet-mapping>
+    <!--//申请加入公司用的servelet-->
+    <servlet>
+        <servlet-name>joincompany</servlet-name>
+        <servlet-class>BaseFunction.joincompany</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>joincompany</servlet-name>
+        <url-pattern>/joincompany</url-pattern>
     </servlet-mapping>
 
 </web-app>
