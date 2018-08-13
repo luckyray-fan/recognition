@@ -34,16 +34,13 @@
 <br><br>
 公司员工编号：<%=user.workid %>
 <br><br>
-<form action="openmeeting" method="post">
-    <input type="submit" value="创办公司会议">
-    <form>
-<br><br>
-<form action="seemeeting" method="post">
-    <input type="submit" value="查看公司会议">
-<form>
-<br><br>
-<a href=register_interface.html target="_blank">
-    <input type="submit" value="解散公司会议">
+<a href=openmeeting target="_blank">
+    <input type="submit" value="创建公司会议">
 </a>
+<br><br>
+<a href=seemeeting target="_blank">
+    <input type="submit" value="查看公司会议">
+</a>
+
 </body>
 </html>

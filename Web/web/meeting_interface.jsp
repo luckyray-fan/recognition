@@ -21,5 +21,16 @@
 &nbsp &nbsp &nbsp
 员工编号：<%=user.workid  %>
 &nbsp &nbsp &nbsp
+
+<br><br><br><br>
+<a href=Main_interface.html target="_blank">
+    <input type="submit" value="查看自己创建的会议">
+</a>
+<br><br>
+<a href=Main_interface.html target="_blank">
+    <input type="submit" value="申请会议在场验证">
+</a>
+
+
 </body>
 </html>

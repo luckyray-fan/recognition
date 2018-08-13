@@ -35,17 +35,27 @@ public class openmeeting extends HttpServlet{
             if(user.companyname==null)
                 response.sendRedirect("entercompany_interface.jsp");
             else{
-                //生成会议
-                String sql1="insert into meeting(company,holder,idlist,memberlist,memberstatus)values("+company+","+holder+","+idlist+","+memberlist+","+sta2+")";
-                stmt.executeUpdate(sql1);
-                //呈现公司所有成员
-                String sql = "Select * from company where name='" + user.companyname+ "'";
-                ResultSet rs = stmt.executeQuery(sql);
-                rs.next();
-                companylist companylist=new companylist(rs.getString(4),rs.getString(5));
-                session.setAttribute("companylist",companylist);
-                response.sendRedirect("seecompany_interface.jsp");
-                con.close();}
+                //如果该用户已经创建一个会议，提示该用户并且跳转到主界面
+                String sql0 = "Select * from meeting where holder='" + user.name+ "'";
+                ResultSet re0 = stmt.executeQuery(sql0);
+                if(re0.next()){
+                    JOptionPane.showMessageDialog(null, "你已经拥有一个自己创办的会议");
+                    response.sendRedirect("function_interface.jsp");
+                }
+                else {
+                    //生成会议
+                    String sql1 = "insert into meeting(company,holder,idlist,memberlist,memberstatus)values(" + company + "," + holder + "," + idlist + "," + memberlist + "," + sta2 + ")";
+                    stmt.executeUpdate(sql1);
+                    //呈现公司所有成员
+                    String sql = "Select * from company where name='" + user.companyname + "'";
+                    ResultSet rs = stmt.executeQuery(sql);
+                    rs.next();
+                    companylist companylist = new companylist(rs.getString(4), rs.getString(5));
+                    session.setAttribute("companylist", companylist);
+                    response.sendRedirect("seecompany_interface.jsp");
+                    con.close();
+                }
+            }
         } catch (ClassNotFoundException e) {
             System.out.println("数据库驱动没有安装");
         } catch (SQLException e) {

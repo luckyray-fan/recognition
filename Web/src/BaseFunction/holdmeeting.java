@@ -38,15 +38,16 @@ public class holdmeeting extends HttpServlet {
             ResultSet res = st.executeQuery(sql2);
             if(res.next()) {
                 PreparedStatement psql;
-                psql =con.prepareStatement("update meeting set idlist = ? ");
+                psql =con.prepareStatement("update meeting set idlist = ? where company="+meeting+" and  holder="+hold+" ");
                 psql.setString(1, res.getString(3)+"，"+workid);
                 psql.executeUpdate();
-                psql =con.prepareStatement("update meeting set memberlist = ? ");
+                psql =con.prepareStatement("update meeting set memberlist = ? where company="+meeting+" and  holder="+hold+" ");
                 psql.setString(1, res.getString(4)+"，"+name);
                 psql.executeUpdate();
-                psql =con.prepareStatement("update meeting set memberstatus = ?");
+                psql =con.prepareStatement("update meeting set memberstatus = ?where company="+meeting+" and  holder="+hold+" ");
                 psql.setString(1, res.getString(5)+"，"+status);
                 psql.executeUpdate();
+                JOptionPane.showMessageDialog(null, "添加会议成员成功");
                 response.sendRedirect("seecompany_interface.jsp");
             }
             con.close();
