@@ -4,21 +4,107 @@
     <meta charset="UTF-8">
     <title>识别页面</title>
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/mdui/0.4.1/css/mdui.min.css">
     <style>
-        .video {
-            margin: 0 auto;
-            width: 200px;
-            -webkit-box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, .1);
-            -moz-box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, .1);
-            box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, .1);
+        body {
+            font-size: 16px;
+            font-family: "SimHei ", "Raleway", "Helvetica Neue", "Microsoft YaHei", Helvetica, Arial, sans-serif;
+            color: #344659;
+            overflow-x: hidden;
+            min-width: 1200px;
         }
-        .canvas{
-            width: 200px;
-            height: 150px;
-            margin: 0 auto;
-            
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+        a, button {
+            cursor: pointer;
         }
 
+        a {
+            text-decoration: none;
+        }
+
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, legend, input, textarea, p, blockquote, th, td, a, img, span {
+            margin: 0;
+            padding: 0;
+        }
+
+        ol, ul, li {
+            list-style: none;
+        }
+
+        .video {
+            margin: 0 auto;
+            width: 800px;
+            font-size: 0;
+            -webkit-box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, .1);
+            -moz-box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, .1);
+            box-shadow: 1px -1px 2px 4px rgba(0, 0, 0, .1);
+        }
+        .pop{
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            display: none;
+            background: rgba(0,0,0,.2);
+            -webkit-transition: all .5s linear;
+            -moz-transition: all .5s linear;
+            -ms-transition: all .5s linear;
+            -o-transition: all .5s linear;
+            transition: all .5s linear;
+        }
+        .pop-canvas{
+            margin: 0 auto;
+            background: #fff;
+            width: fit-content;
+            position: relative;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+        }
+        .pop-click{
+            width: 120px;
+            height: 35px;
+            margin: 20px auto;
+            font-size: 18px;
+            color: #fff;
+            text-align: center;
+            line-height: 35px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            cursor: pointer;
+            background: #4586f3;
+        }
+        .pop-close{
+            position: absolute;
+            top: 0;
+            -webkit-border-radius: 3px;
+            cursor: pointer;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            right: -30px;
+            background: #fff;
+        }
+        .canvas {
+            width: 800px;
+            height: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+        #canvas{
+            display: none;
+        }
+        .canvas-img{
+            width: 720px;
+            text-align: center;
+            display: block;
+            position: relative;
+            top: 25px;
+            margin: 0 auto;
+        }
         .shoot {
             width: 60px;
             height: 35px;
@@ -37,18 +123,31 @@
 </head>
 <body>
 <div class="video">
-    <video src="" id="video" autoplay width="200" height="150"></video>
+    <video src="" id="video" autoplay width="800" height="600"></video>
 </div>
 <div class="shoot">click</div>
-<div class="canvas">
-    <canvas id="canvas"></canvas>
+<div class="pop">
+    <div class="pop-canvas">
+        <div class="canvas">
+            <canvas id="canvas" width="800" height="600"></canvas>
+            <img src="" alt="" class="canvas-img">
+        </div>
+        <div class="pop-close">
+            <i class="mdui-icon material-icons">close</i>
+        </div>
+    </div>
+    <div class="pop-click">确认上传</div>
 </div>
 <script>
     var video = document.getElementById("video");
+    var $pop = $(".pop"),$img = $(".canvas-img");
+    var $close = $(".pop-close"),
+        $popClick = $(".pop-click");
     var $canvas = document.getElementById("canvas");
     var $shoot = $(".shoot");
     var context = $canvas.getContext("2d");
     var x;
+
     function getUserMedia(con, success, err) {
         if (navigator.mediaDevices.getUserMedia)
             navigator.mediaDevices.getUserMedia(con).then(success).catch(err);
@@ -69,35 +168,49 @@
             facingMode: "user"
         }
     };
+
     getUserMedia(constraints, success, error);
+    //点击后展示结果
     $shoot[0].addEventListener("click", function (ev) {
-        context.drawImage(video, 0, 0,200,150);
+        $pop[0].style.display = "block";
+        var videoH = video.height,
+            videoW = video.width;
+        console.log(videoW, videoH)
+        context.drawImage(video, 0, 0, videoW, videoH);
         x = $canvas.toDataURL("image/png");
-        x = dataURLtoFile(x,"test");
+        $img[0].src = x;
+    });
+    //点击后关闭展示
+    $close[0].addEventListener("click",function (ev) {
+        $pop[0].style.display = "none";
+    });
+    //点击后上传图像
+    $popClick[0].addEventListener("click",function () {
+        x = dataURLtoFile(x, "test");
         uploadfile(x);
     });
     function dataURLtoFile(dataurl, filename) {
         var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
             bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
-        while(n--){
+        while (n--) {
             u8arr[n] = bstr.charCodeAt(n);
         }
-        return new File([u8arr], filename, {type:mime});
+        return new File([u8arr], filename, {type: mime});
     }
+
     function uploadfile(cur) {
         var formdata = new FormData();
-        formdata.append('file',cur);
+        formdata.append('file', cur);
         $.ajax({
-            url:"/FileUtil",
-            type:"POST",
-            data:formdata,
-            processData:false,
-            contentType:false,
-            dataType:"JSON",
-            success:function (e) {
-                if(e.success)
-                {
-                    alert('头像上传成功');
+            url: "/FileUtil",
+            type: "POST",
+            data: formdata,
+            processData: false,
+            contentType: false,
+            dataType: "JSON",
+            success: function (e) {
+                if (e.success) {
+                    alert('头像上传成功并且通过');
                 }
             }
         })
