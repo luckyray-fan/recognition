@@ -1,13 +1,11 @@
 package BaseFunction;
 import Tool.user;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -44,7 +42,6 @@ public class login extends HttpServlet {
             String sql = "SELECT * FROM userinfo WHERE  account='" + account+ "' AND   pwd='" + pwd + "'"; // 查询用户信息的SQL语句,在参数前加上binary 就可以使查询结果区分大小写，因为MySQL默认不区分大小写
             ResultSet rs = stmt.executeQuery(sql); // 执行查询
             if (rs.next()) { // 有数据库中存在该用户
-                out.print("登陆成功");
                 user user=new user(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9));
                 HttpSession session=request.getSession();
                 session.setAttribute("user",user);

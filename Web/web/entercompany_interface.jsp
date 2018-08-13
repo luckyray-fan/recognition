@@ -15,9 +15,9 @@
 我们发现您还没有加入任何公司，是否考虑现在加入您所在的公司
 <br>
 <form action="joincompany" method="post">
-选择您的公司： 请输入您的公司名:<input type="text" name="company"><br>
-请输入您公司的对应的邀请码:<input type="text" name="identifyingcode"><br>
-请输入您的员工号：<input type="text" name="workid"><br>
+选择您的公司： 请输入您的公司名：&nbsp &nbsp<input type="text" name="company"><br>
+请输入您公司的对应的邀请码：&nbsp &nbsp<input type="text" name="identifyingcode"><br>
+请输入您的员工号：&nbsp &nbsp<input type="text" name="workid"><br>
 <input type="submit" value="申请加入"><br>
 </form>
 </body>

@@ -26,7 +26,7 @@ public class holdmeeting extends HttpServlet {
         String hold = "'" + user2.name+ "'";
         String workid = request.getParameter("workid");
         String name = request.getParameter("name");
-        String status = "未在场";
+        String status = "00";
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/user?useUnicode=true&characterEncoding=utf8&useSSL=true","root","7758521");
