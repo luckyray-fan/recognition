@@ -75,5 +75,41 @@
         <servlet-name>joincompany</servlet-name>
         <url-pattern>/joincompany</url-pattern>
     </servlet-mapping>
+    <!--//查看自己创办的会议用的servelet-->
+    <servlet>
+        <servlet-name>mymeeting</servlet-name>
+        <servlet-class>BaseFunction.mymeeting</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mymeeting</servlet-name>
+        <url-pattern>/mymeeting</url-pattern>
+    </servlet-mapping>
+    <!--//获得当前坐标用的servelet-->
+    <servlet>
+        <servlet-name>confirmlocation</servlet-name>
+        <servlet-class>BaseFunction.confirmlocation</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>confirmlocation</servlet-name>
+        <url-pattern>/confirmlocation</url-pattern>
+    </servlet-mapping>
+    <!--//用于打开定位界面用的servelet-->
+    <servlet>
+        <servlet-name>confirm1</servlet-name>
+        <servlet-class>BaseFunction.confirm1</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>confirm1</servlet-name>
+        <url-pattern>/confirm1</url-pattern>
+    </servlet-mapping>
+    <!--//主持者确定开会地点用的servelet-->
+    <servlet>
+        <servlet-name>chooselocation</servlet-name>
+        <servlet-class>BaseFunction.chooselocation</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>chooselocation</servlet-name>
+        <url-pattern>/chooselocation</url-pattern>
+    </servlet-mapping>
 
 </web-app>
