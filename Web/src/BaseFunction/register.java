@@ -20,49 +20,66 @@ public class register extends HttpServlet{
         response.setContentType("text/html;charset=UTF-8");
         //从html界面获取到用户信息
         PrintWriter out = response.getWriter();
-        String account="'"+request.getParameter("account")+"'";
-        String pwd="'"+request.getParameter("pwd")+"'";
-        String name="'"+request.getParameter("name")+"'";
-        String sex="'"+request.getParameter("sex")+"'";
-        String age="'"+request.getParameter("age")+"'";
-        String tel="'"+request.getParameter("tel")+"'";
+        String mail="'"+request.getParameter("mail")+"'";
+        String pwd="'"+request.getParameter("pass")+"'";
+        System.out.println(mail+" "+pwd);
         SimpleDateFormat tempDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String retime ="'"+tempDate.format(new java.util.Date())+"'";
         //连接数据库
         Connection con;
         String driver="com.mysql.jdbc.Driver";
         //这里我的数据库是qcl
-        String url="jdbc:mysql://localhost:3306/user?useUnicode=true&characterEncoding=utf8&useSSL=true";
+        String url="jdbc:mysql://localhost:3306/user";
         String user="root";
-        String password="7758521";
+        String password="";
         try {
             Class.forName(driver);
             con = DriverManager.getConnection(url, user, password);
             if (con.isClosed()) {
-                System.out.println("数据库连接失败");
+                System.out.println("数据库close");
             }
+            //如果没有就创建
             Statement statement = con.createStatement();
-            String sql = "Select * from userinfo where account="+account+"";
+            String sql = "select * from userinfo where id = 1";
+            ResultSet tableEx = statement.executeQuery(sql);
+            if(!tableEx.next())
+            {
+                String tableCr = "create table userinfo" +
+                        "(" +
+                            "id int primary key," +
+                            "uname varchar(40)," +
+                            "pass varchar(100),"+
+                            "emp int(20)," +
+                            "mail varchar(255)," +
+                            "comp varchar(255)," +
+                            "retime DATETIME"
+                            +
+                        ")";
+                statement.executeUpdate(tableCr);
+            }
+
+
+            sql = "Select * from userinfo where mail="+mail+"";
             ResultSet resultSet = statement.executeQuery(sql);
             boolean exist=false;
             while (resultSet.next()) {
                 exist=true;
             }
             if(exist)
-                out.print("该用户名已经存在");
+                out.print("{'success':false}");
             else{
-                String sqls="insert into userinfo(account,pwd,name,sex,age,tel,retime)values("+account+","+pwd+","+name+","+sex+","+age+","+tel+","+retime+")";
+                String sqls="insert into userinfo(uname,pass,mail,retime)values("+mail+","+pwd+","+mail+","+retime+")";
                 Statement stmt1=con.createStatement();
                 stmt1.executeUpdate(sqls);
                 response.setContentType("text/html;charset=UTF-8");
-                out.print("注册成功");
+                out.print("{'success':true}");
             }
             resultSet.close();
             con.close();
         } catch (ClassNotFoundException e) {
             System.out.println("数据库驱动没有安装");
         } catch (SQLException e) {
-            System.out.println("数据库连接失败");
+            System.out.println(e.getMessage());
         }
     }
 }
